@@ -1,0 +1,102 @@
+/*////////////////////////
+       base 
+ /////////////////////////////////*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+    font-family: 'Martel Sans', sans-serif;
+}
+:root{
+    --netflix-logo-red: #db0000;
+    --white:#fff;
+    --black:rgba(0,0,0,.8);
+    --netflix-gray:rgb(86,77,77);
+    --netflix-cardinale:#831010;
+    --background: #141414;
+    --header-height:6.8rem;
+    --margin-film:.5rem;
+}
+/*////////////////////////
+        header
+ /////////////////////////////////*/
+.header{
+    height: var(--header-height);
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6rem;
+}
+.header__left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    padding-right:3.4rem;
+}
+.logo__img{
+    height: 2.8rem;
+}
+.header__menu__list{
+    list-style: none;
+    color: var(--white);
+    font-size: 1.4rem;
+    display: flex;
+}
+.header__menu__list-items{
+    cursor: pointer;
+}
+.header__menu__list-items:not(:last-child){
+   padding-right:2rem;
+}
+/*////////////////////////
+       BODY
+/////////////////////////////////*/
+.container{
+    min-height:calc(100vh - var(--header-height));
+    height: calc(100% - var(--header-height));
+    background-color: var(--background);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding:5.7rem;
+}
+.movies__container{
+    height: calc(100vh / 5);
+    flex: 0 0 calc((100% / 6) - .4rem);
+    cursor: pointer;
+    transition: all .2s;
+    background-color: #fff;
+    margin: 0 .2rem;
+    margin-bottom:10rem;
+}
+.movies__container:hover{
+    transform: scale(1.1);
+}
+.movies__container:active{
+    transform: scale(1);
+}
+.movies__container-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.movies__container-info p{
+    font-size: 1.5rem;
+}
+.movies__container-info p.titolo{
+    font-size: 2rem;
+}
+
+
