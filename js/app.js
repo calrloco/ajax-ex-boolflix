@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.search_movie__btn').click(function(){
+     $('.container').empty();
      var titolo = $('.search_movie').val();
-     console.log(titolo);
      cercaFilm(titolo);
   });
 });
@@ -37,7 +37,3 @@ function compileHandlebar(risp){
    $('.container').append(html);
   }
 }
-$('.search_movie__btn').click(function(){
-  $('.container').empty();
-  var titolo = $('.search_movie').val();
-});

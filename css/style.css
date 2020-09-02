@@ -42,7 +42,7 @@ html{
     padding-right:3.4rem;
 }
 .logo__img{
-    height: 2.8rem;
+    height: 2rem;
 }
 .header__menu__list{
     list-style: none;
@@ -55,6 +55,23 @@ html{
 }
 .header__menu__list-items:not(:last-child){
    padding-right:2rem;
+}
+.search_movie{
+    height: 3rem;
+    width: 20rem;
+    background-color: var(--black);
+    color: #fff;
+    border:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+input:focus{
+    outline: 1px solid var(--white);
+}
+.search_movie__btn{
+    font-size: 2rem;
+    color: var(--white);
 }
 /*////////////////////////
        BODY
@@ -75,8 +92,8 @@ html{
     cursor: pointer;
     transition: all .2s;
     background-color: #fff;
-    margin: 0 .2rem;
-    margin-bottom:10rem;
+    margin: 4.3rem .2rem;
+    
 }
 .movies__container:hover{
     transform: scale(1.1);
