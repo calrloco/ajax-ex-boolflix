@@ -2,6 +2,7 @@ $(document).ready(function(){
   $('.search_movie__btn').click(function(){
      $('.container').empty();
      var titolo = $('.search_movie').val();
+     $('.search_movie').val('');
      cercaFilm(titolo);
   });
 });
