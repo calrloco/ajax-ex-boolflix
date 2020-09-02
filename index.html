@@ -37,14 +37,14 @@
       </div>
     </header>
     <div class="container">
-      <div class="movies__container">
-        <div class="movies__container-info">
-          <p class="titolo">Prova</p>
-          <p class="titolo-originale">Prova</p>
-          <p class="lang">Prova</p>
-          <p class="rating">Prova</p>
-        </div>
-      </div>
+      <ul class="movies__container">
+        <i class="fas fa-star rating"></i>
+        <i class="fas fa-star rating"></i>
+        <i class="fas fa-star rating"></i>
+        <i class="fas fa-star rating"></i>
+        <i class="fas fa-star rating"></i>
+      </ul>
+      <p class="not-found"></p>
     </div>
     <script id="movie_container" type="text/x-handlebars-template">
       <div class="movies__container">
@@ -58,9 +58,13 @@
           <p class="lang">
             {{lang}}
           </p>
-          <p class="rating">
-            {{rating}}
-          </p>
+          <div class="ratings">
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+          </div>
         </div>
       </div>
     </script>

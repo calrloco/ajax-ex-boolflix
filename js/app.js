@@ -1,26 +1,20 @@
 $(document).ready(function () {
-  // richiamo funzione ricerca al click 
-  $(".search_movie__btn").click(function () {
-    var titolo = $(".search_movie").val();
-    $(".search_movie").val("");
-    cercaFilm(titolo);
-  });
-  // richiamo funzione ricerca con invio sulla keybord
-  $(".search_movie").keypress(function (event) {
-    var titolo = $(".search_movie").val();
-    if (event.which === 13 || event.keyCode === 13) {
-      $(".search_movie").val("");
-      cercaFilm(titolo);
+  addStars();
+  // funzione per cercare in automatico mentre scrivi
+  $(".search_movie").keyup(function () {
+    if ($(".search_movie").val().length != 0) {
+      cercaFilm();
     }
   });
 });
 // funzione ricerca Api che richiama la funzione che compila il template
-function cercaFilm(titolo) {
-  // svuoto ricerce se ce ne sono 
-  if($(".movies__container-info").length > 0){
+function cercaFilm() {
+  var titolo = $(".search_movie").val();
+  // svuoto ricerce se ce ne sono
+  if ($(".movies__container-info").length > 0) {
     $(".container").empty();
   }
-  // api 
+  // api
   $.ajax({
     url: "https://api.themoviedb.org/3/search/movie",
     method: "GET",
@@ -30,7 +24,13 @@ function cercaFilm(titolo) {
       language: "it-IT",
     },
     success: function (risposta) {
-      compileHandlebar(risposta.results);
+      // se ci sono risposte fa la funzione
+      if (risposta.results.length != 0) {
+        compileHandlebar(risposta.results);
+      }else{
+        $('.not-found').text('Nessun risultato trovato per la ricerca di'+'"'+titolo+'"'+
+        'prova con parole chiave diverse');
+      }
     },
     error: function () {
       alert("Si e verificato un errore :( riprova piu tardi");
@@ -40,6 +40,7 @@ function cercaFilm(titolo) {
 // funzione per compilare template
 function compileHandlebar(risp) {
   for (i = 0; i < risp.length; i++) {
+    var rating = Math.round(risp[i].vote_average);
     var source = $("#movie_container").html();
     var template = Handlebars.compile(source);
     var context = {
@@ -48,7 +49,13 @@ function compileHandlebar(risp) {
       lang: risp[i].original_language,
       rating: risp[i].vote_average,
     };
+    addStars(rating)
     var html = template(context);
     $(".container").append(html);
   }
+}
+function addStars(rating){
+  for (var i=0;i<rating;i++){
+  $('.rating').eq(i).addClass('yellow');
+}
 }

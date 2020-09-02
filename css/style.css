@@ -65,6 +65,10 @@ html{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    transition: all .2s;
+}
+.search_movie-hidden{
+    width: 0%;
 }
 input:focus{
     outline: 1px solid var(--white);
@@ -110,10 +114,19 @@ input:focus{
     font-weight: 700;
 }
 .movies__container-info p{
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .movies__container-info p.titolo{
-    font-size: 2rem;
+    font-size: 1rem;
+}
+.not-found{
+    color: var(--white);
+    justify-self: center;
+    width: 100%;
+    text-align: center;
+}
+.yellow{
+    color:	#FFFF00 ;
 }
 
 
