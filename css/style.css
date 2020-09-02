@@ -38,6 +38,10 @@ html{
     justify-content: center;
     align-items: center;
 }
+.header__searchbar{
+    display: flex;
+    align-items: center;
+}
 .logo{
     padding-right:3.4rem;
 }
@@ -58,17 +62,20 @@ html{
 }
 .search_movie{
     height: 3rem;
-    width: 20rem;
-    background-color: var(--black);
+    width: 0;
+    background-color: transparent;
     color: #fff;
     border:none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    transition: all .2s;
+    transition: all.2s;
+    position: relative;
+    padding-left: 2.5rem;
 }
-.search_movie-hidden{
-    width: 0%;
+.search-full{
+    background-color: var(--black);
+    width: 30rem;
 }
 input:focus{
     outline: 1px solid var(--white);
@@ -76,6 +83,9 @@ input:focus{
 .search_movie__btn{
     font-size: 2rem;
     color: var(--white);
+    position: absolute;
+    margin-left:.5rem;
+    cursor: pointer;
 }
 /*////////////////////////
        BODY
