@@ -71,7 +71,7 @@ function trendMoviesHomePage() {
   var titolo = "";
   cercaFilm(titolo, PopularThisWeek);
 }
-// animazione search button
+////////// animazioni//////////////////////////
 function popSearch() {
   $(".search_movie__btn").click(function () {
     $(".search_movie").toggleClass("search-full");
@@ -88,4 +88,13 @@ function popSearch() {
       $(this).removeClass("fa-times");
     }
   });
+  //////scroll 
+  $(window).bind('mousewheel', function(event) {
+    if (event.originalEvent.wheelDelta >= 0) {
+      $('.header').removeClass('header-darker');
+    }
+    else {
+      $('.header').addClass('header-darker');
+    }
+});
 }

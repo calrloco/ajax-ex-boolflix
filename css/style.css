@@ -15,7 +15,8 @@ html{
 :root{
     --netflix-logo-red: #db0000;
     --white:#fff;
-    --black:rgba(0,0,0,.8);
+    --black:rgba(0,0,0,.3);
+    --dark-black:#000;
     --netflix-gray:rgb(86,77,77);
     --netflix-cardinale:#831010;
     --background: #141414;
@@ -32,6 +33,13 @@ html{
     justify-content: space-between;
     align-items: center;
     padding: 0 6rem;
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    transition: all .5s;
+}
+.header-darker{
+    background-color: var(--dark-black);
 }
 .header__left{
     display: flex;
