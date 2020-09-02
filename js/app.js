@@ -27,9 +27,14 @@ function cercaFilm() {
       // se ci sono risposte fa la funzione
       if (risposta.results.length != 0) {
         compileHandlebar(risposta.results);
-      }else{
-        $('.not-found').text('Nessun risultato trovato per la ricerca di'+'"'+titolo+'"'+
-        'prova con parole chiave diverse');
+      } else {
+        $(".not-found").text(
+          "Nessun risultato trovato per la ricerca di" +
+            '"' +
+            titolo +
+            '"' +
+            "prova con parole chiave diverse"
+        );
       }
     },
     error: function () {
@@ -40,22 +45,24 @@ function cercaFilm() {
 // funzione per compilare template
 function compileHandlebar(risp) {
   for (i = 0; i < risp.length; i++) {
-    var rating = Math.round(risp[i].vote_average);
+    var rating = (Math.round(risp[i].vote_average) / 2);
+    console.log(rating);
     var source = $("#movie_container").html();
     var template = Handlebars.compile(source);
     var context = {
       titolo: risp[i].title,
       titoloOriginale: risp[i].original_title,
-      lang: risp[i].original_language,
-      rating: risp[i].vote_average,
+      lang: risp[i].original_language
     };
-    addStars(rating)
     var html = template(context);
     $(".container").append(html);
+    addStars(rating);
   }
 }
-function addStars(rating){
-  for (var i=0;i<rating;i++){
-  $('.rating').eq(i).addClass('yellow');
-}
+function addStars(rating) {
+  $(".movies__container").each(function () {
+    for (var i=0;i<rating; i++) {
+      $(this).find(".rating").eq(i).addClass("yellow");
+    }
+  });
 }
