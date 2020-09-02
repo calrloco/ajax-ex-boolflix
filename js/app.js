@@ -1,5 +1,10 @@
 $(document).ready(function(){
-  var titolo = 'pippo';
+  $('.search_movie__btn').click(function(){
+     var titolo = $('.search_movie').val();
+     console.log(titolo);
+     cercaFilm(titolo);
+  });
+  function cercaFilm (titolo){
   $.ajax({
     url: "https://api.themoviedb.org/3/search/movie",
     method: "GET",
@@ -10,11 +15,13 @@ $(document).ready(function(){
     },
     success: function (risposta){
       compileHandlebar(risposta.results);
+      
     },
     error: function (){
         alert('Si e verificato un errore :( riprova piu tardi');
     },
   });
+}
 });
 function compileHandlebar(risp){
   for (i=0;i<risp.length;i++){
@@ -30,3 +37,6 @@ function compileHandlebar(risp){
    $('.container').append(html);
   }
 }
+$('.search_movie').click(function(){
+  var titolo = $('.search_movie').val();
+});
