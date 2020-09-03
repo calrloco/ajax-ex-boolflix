@@ -136,9 +136,8 @@ html{
     z-index: 2;
     padding-left: 2rem;
     background-color: var(--black-overlay);
-    transform: translateY(10%);
     opacity: 0;
-    transition: opacity .8s;
+    transition: opacity .4s;
 }
 .movies__container-info:hover .movies__container-text{
     opacity: 100%;
