@@ -14,7 +14,7 @@
     <title>BoolFlix</title>
   </head>
   <body>
-    <header class="header">
+    <nav class="header">
       <div class="header__left">
         <div class="logo">
           <img
@@ -27,16 +27,16 @@
           <ul class="header__menu__list">
             <li class="header__menu__list-items">Film</li>
             <li class="header__menu__list-items serie">Serie tv</li>
-            <li class="header__menu__list-items">Best Movies</li>
+            <li class="header__menu__list-items trending">Tendenze</li>
           </ul>
         </div>
       </div>
       <div class="header__searchbar">
-        <input type="text" class="search_movie">
+        <input type="text" class="search_movie" placeholder="Cerca per Titolo">
         <i class="fas fa-search search_movie__btn"></i>
         </input>
       </div>
-    </header>
+    </nav>
     <div class="container">
      <p class="not-found"></p>
     </div>
@@ -49,16 +49,12 @@
           <p class="titolo_originale">
             {{titoloOriginale}}
           </p>
-          <p class="lang">
-            {{lang}}
-          </p>
+          <div class="lang">
+            
+            {{{lang}}}
+          </div>
           <div class="ratings">
-            {{rating}}
-            <i class="fas fa-star rating"></i>
-            <i class="fas fa-star rating"></i>
-            <i class="fas fa-star rating"></i>
-            <i class="fas fa-star rating"></i>
-            <i class="fas fa-star rating"></i>
+            {{{rating}}}
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ html{
     position: fixed;
     z-index: 3;
     width: 100%;
-    transition: all .5s;
+    transition: all .6s;
 }
 .header-darker{
     background-color: var(--dark-black);
@@ -84,8 +84,6 @@ html{
 .search-full{
     background-color: var(--black);
     width: 30rem;
-}
-input:focus{
     outline: 1px solid var(--white);
 }
 .search_movie__btn{
@@ -99,8 +97,7 @@ input:focus{
        BODY
 /////////////////////////////////*/
 .container{
-    min-height:calc(100vh - var(--header-height));
-    height: calc(100% - var(--header-height));
+    min-height:100vh;
     background-color: var(--background);
     display: flex;
     flex-wrap: wrap;
@@ -118,10 +115,7 @@ input:focus{
     
 }
 .movies__container:hover{
-    transform: scale(1.1);
-}
-.movies__container:active{
-    transform: scale(1);
+    transform: scale(1.2);
 }
 .movies__container-info{
     display: flex;
@@ -143,8 +137,14 @@ input:focus{
     width: 100%;
     text-align: center;
 }
+.ratings{
+    color: #d3d3d3;
+}
 .yellow{
     color:	#FFFF00 ;
+}
+.flags{
+    height: 2rem;
 }
 
 
