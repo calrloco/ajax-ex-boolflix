@@ -5,7 +5,7 @@ $(document).ready(function () {
   popSearch();
   // funzione per cercare in automatico mentre scrivi
   $(".search_movie").keydown(function () {
-    var urlSearch = "https://api.themoviedb.org/3/search/movie";
+    var urlSearch = "https://api.themoviedb.org/3/search/multi";
     var titolo = $(".search_movie").val();
     if ($(this).val().length != 0) {
       cercaFilm(titolo, urlSearch);
@@ -35,7 +35,6 @@ function cercaFilm(titolo, url) {
     success: function (risposta) {
       // se ci sono risposte fa la funzione
       if (risposta.results.length != 0) {
-        console.log(risposta.results);
         compileHandlebar(risposta.results);
       } else {
         $(".not-found").text(
@@ -55,18 +54,27 @@ function cercaFilm(titolo, url) {
 // funzione per compilare template
 function compileHandlebar(risp) {
   for (i = 0; i < risp.length; i++) {
-    var source = $("#movie_container").html();
-    var template = Handlebars.compile(source);
-    var rating = risp[i].vote_average;
-    var lingua =  risp[i].original_language;
-    var context = {
-      titolo: risp[i].title,
-      titoloOriginale: risp[i].original_title,
-      lang: nationFlag(lingua),
-      rating: addStar(rating),
-    };
-    var html = template(context);
-    $(".container").append(html);
+    if (risp[i].media_type != "person") {
+      if (risp[i].media_type == "tv") {
+        titolo = risp[i].name;
+        titoloOriginale = risp[i].original_name;
+      } else if (risp[i].media_type == "movie") {
+        titolo = risp[i].title;
+        titoloOriginale = risp[i].original_title;
+      }
+      var source = $("#movie_container").html();
+      var template = Handlebars.compile(source);
+      var rating = risp[i].vote_average;
+      var lingua = risp[i].original_language;
+      var context = {
+        titolo: risp[i].title,
+        titoloOriginale: risp[i].original_title,
+        lang: nationFlag(lingua),
+        rating: addStar(rating),
+      };
+      var html = template(context);
+      $(".container").append(html);
+    }
   }
 }
 // function homepage popular movies
@@ -77,26 +85,28 @@ function trendMoviesHomePage() {
 }
 function addStar(rat) {
   var voto = Math.ceil(rat / 2);
-  var stars = '';
+  var stars = "";
   for (var i = 0; i < 5; i++) {
-    if(i<=voto){
+    if (i <= voto) {
       var star = '<i class="fas fa-star rating yellow"></i>';
-    }else{
+    } else {
       var star = '<i class="fas fa-star rating"></i>';
     }
     stars += star;
   }
-  console.log(i);
   return stars;
 }
-function nationFlag(lingua){
-    if(lingua == 'en'){
-        lingua =  "<img src='https://svgshare.com/i/PH_.svg' alt=\"UK-flag\" class=\"flags\" title='' />";
-    }else if(lingua == 'it'){
-      lingua = "<img src='https://svgshare.com/i/PFJ.svg' alt=\"IT-flag\" class=\"flags\" title=''/>"
-    }
-    return lingua
+// ritorna bandiera
+function nationFlag(lingua) {
+  if (lingua == "en") {
+    lingua =
+      "<img src='https://svgshare.com/i/PHa.svg' alt=\"UK-flag\" class=\"flags\" title='' />";
+  } else if (lingua == "it") {
+    lingua =
+      "<img src='https://svgshare.com/i/PGP.svg'' alt=\"IT-flag\" class=\"flags\" title=''/>";
   }
+  return lingua;
+}
 ////////// animazioni//////////////////////////
 function popSearch() {
   $(".search_movie__btn").click(function () {
