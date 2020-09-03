@@ -55,6 +55,7 @@ html{
 }
 .logo__img{
     height: 2rem;
+    cursor: pointer;
 }
 .header__menu__list{
     list-style: none;

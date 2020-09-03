@@ -4,6 +4,7 @@ $(document).ready(function () {
   // animazione poput e chiusura input al click della lente
   popSearch();
   // funzione per cercare in automatico mentre scrivi
+  $(".logo__img").click(trendMoviesHomePage);
   $(".search_movie").keydown(function () {
     var urlSearch = "https://api.themoviedb.org/3/search/multi";
     var titolo = $(".search_movie").val();
@@ -68,11 +69,13 @@ function compileHandlebar(risp) {
       var template = Handlebars.compile(source);
       var rating = risp[i].vote_average;
       var lingua = risp[i].original_language;
+      var posterPrefix = "https://image.tmdb.org/t/p/original"
       var context = {
         titolo: titolo,
         titoloOriginale: titoloOriginale,
         lang: nationFlag(lingua),
         rating: addStar(rating),
+        poster: posterPrefix+risp[i].poster_path,
       };
       var html = template(context);
       $(".container").append(html);

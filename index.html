@@ -25,7 +25,7 @@
         </div>
         <div class="header-menu">
           <ul class="header__menu__list">
-            <li class="header__menu__list-items">Film</li>
+            <li class="header__menu__list-items film">Film</li>
             <li class="header__menu__list-items serie">Serie tv</li>
             <li class="header__menu__list-items trending">Tendenze</li>
           </ul>
@@ -42,7 +42,7 @@
     </div>
     <script id="movie_container" type="text/x-handlebars-template">
       <div class="movies__container">
-        <div class="movies__container-info">
+        <div class="movies__container-info" style="background-image:url({{poster}});background-size: cover;">
           <p class="titolo">
             {{titolo}}
           </p>
