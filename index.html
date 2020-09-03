@@ -42,7 +42,7 @@
     </div>
     <script id="movie_container" type="text/x-handlebars-template">
       <div class="movies__container">
-        <div class="movies__container-info" style="background-image:url({{poster}});background-size: cover;">
+        <div class="movies__container-info">
           <p class="titolo">
             {{titolo}}
           </p>
@@ -55,6 +55,9 @@
           <div class="ratings">
             {{{rating}}}
           </div>
+          <div class="img-box">
+            <img src=" {{poster}}" class="poster" alt="Image could not avalaible">
+           </div>
         </div>
       </div>
     </script>

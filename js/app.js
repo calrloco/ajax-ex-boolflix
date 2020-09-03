@@ -69,7 +69,7 @@ function compileHandlebar(risp) {
       var template = Handlebars.compile(source);
       var rating = risp[i].vote_average;
       var lingua = risp[i].original_language;
-      var posterPrefix = "https://image.tmdb.org/t/p/original"
+      var posterPrefix = "https://image.tmdb.org/t/p/w342"
       var context = {
         titolo: titolo,
         titoloOriginale: titoloOriginale,
