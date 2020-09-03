@@ -53,6 +53,8 @@ function cercaFilm(titolo, url) {
 }
 // funzione per compilare template
 function compileHandlebar(risp) {
+  var titolo;
+  var titoloOriginale;
   for (i = 0; i < risp.length; i++) {
     if (risp[i].media_type != "person") {
       if (risp[i].media_type == "tv") {
@@ -67,8 +69,8 @@ function compileHandlebar(risp) {
       var rating = risp[i].vote_average;
       var lingua = risp[i].original_language;
       var context = {
-        titolo: risp[i].title,
-        titoloOriginale: risp[i].original_title,
+        titolo: titolo,
+        titoloOriginale: titoloOriginale,
         lang: nationFlag(lingua),
         rating: addStar(rating),
       };
