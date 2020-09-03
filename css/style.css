@@ -16,6 +16,7 @@ html{
     --netflix-logo-red: #db0000;
     --white:#fff;
     --black:rgba(0,0,0,.3);
+    --black-overlay:rgba(0,0,0,.9);
     --dark-black:#000;
     --netflix-gray:rgb(86,77,77);
     --netflix-cardinale:#831010;
@@ -106,15 +107,15 @@ html{
     justify-content: flex-start;
     align-items: flex-start;
     padding:5.7rem;
+    overflow: hidden;
 }
 .movies__container{
     height: calc(100vh / 2);
     flex: 0 0 calc((100% / 6) - .8rem);
     cursor: pointer;
-    transition: all .2s;
+    transition: all .3s;
     margin: 4.3rem .4rem;
     position: relative;
-    
 }
 .movies__container:hover{
     transform: scale(1.2);
@@ -128,9 +129,22 @@ html{
     font-size: 2rem;
     font-weight: 700;
     z-index:3;
+    color: var(--white);
+}
+
+.movies__container-text{
+    z-index: 2;
+    padding-left: 2rem;
+    background-color: var(--black-overlay);
+    transform: translateY(10%);
+    opacity: 0;
+    transition: opacity .8s;
+}
+.movies__container-info:hover .movies__container-text{
+    opacity: 100%;
 }
 .movies__container-info p{
-    font-size: 1rem;
+    font-size: 2rem;
 }
 .movies__container-info p.titolo{
     font-size: 1rem;
@@ -155,10 +169,11 @@ html{
     height: 100%;
     z-index: 1;
     object-fit:cover;
-    transition: all .2s;
+    transition: all .4s;
 }
 .poster:hover{
-    filter: brightness(75%);
+    filter:  brightness(57%);
+    -webkit-filter:brightness(47%);
 }
 .img-box{
     width: 100%;
@@ -166,9 +181,6 @@ html{
     position: absolute;
     z-index: 1;
 }
-.titolo_originale, .lang,.ratings{
-    z-index: 2;
-    color: var(--white);
-}
+
 
 

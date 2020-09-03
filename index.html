@@ -19,7 +19,7 @@
         <div class="logo">
           <img
             class="logo__img"
-            src="https://i.ibb.co/9rq9pVh/netflix-logo.png"
+            src="https://i.ibb.co/9rq9pVh/netflix-log.png"
             alt="netflix-logo"
           />
         </div>
@@ -43,6 +43,7 @@
     <script id="movie_container" type="text/x-handlebars-template">
       <div class="movies__container">
         <div class="movies__container-info">
+          <div class="movies__container-text">
           <p class="titolo">
             {{titolo}}
           </p>
@@ -55,8 +56,9 @@
           <div class="ratings">
             {{{rating}}}
           </div>
+          </div>
           <div class="img-box">
-            <img src=" {{poster}}" class="poster" alt="Image could not avalaible">
+            <img src=" {{poster}}" class="poster" alt="">
            </div>
         </div>
       </div>
