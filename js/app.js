@@ -22,7 +22,7 @@ function cercaFilm(titolo, url) {
   // svuoto ricerce se ce ne sono
   if ($(".movies__container-info").length > 0) {
     $(".container").empty();
-    $(".container").append("<p class=\"not-found\"></p>");
+    $(".container").append('<p class="not-found"></p>');
   }
   // api
   $.ajax({
@@ -37,7 +37,7 @@ function cercaFilm(titolo, url) {
     success: function (risposta) {
       // se ci sono risposte fa la funzione
       if (risposta.results.length != 0) {
-        $('.not-found').hide();
+        $(".not-found").hide();
         compileHandlebar(risposta.results);
       } else {
         $(".not-found").text(
@@ -78,7 +78,7 @@ function compileHandlebar(risp) {
         lang: nationFlag(lingua),
         rating: addStar(rating),
         poster: posterPrefix + risp[i].poster_path,
-        overview: risp[i].overview
+        overview: troncaStringa(risp[i].overview),
       };
       var html = template(context);
       $(".container").append(html);
@@ -122,10 +122,21 @@ function nationFlag(lingua) {
   return lingua;
 }
 /// broken image sostituzione//////////////
-function brokenImg(){
-  $('img.poster').on("error", function () {
-    this.src ="https://i.ibb.co/hKqm2mZ/Untitled-1.png";
+function brokenImg() {
+  $("img.poster").on("error", function () {
+    this.src = "https://i.ibb.co/hKqm2mZ/Untitled-1.png";
   });
+}
+/////////// tronca stringa ////////////////////
+function troncaStringa(stringa) {
+  var shortText = "";
+  var witheSpace = stringa.indexOf(" ");
+  for (var i = 0; i < stringa.length; i++) {
+    if (stringa[i] == " " && i < 100) {
+        var shortText = $.trim(stringa).substring(0, i) + "...";
+    }
+  }
+  return shortText;
 }
 ////////// animazioni//////////////////////////
 function popSearch() {
@@ -153,4 +164,3 @@ function popSearch() {
     }
   });
 }
-
