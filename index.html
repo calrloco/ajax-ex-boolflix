@@ -37,29 +37,28 @@
         </input>
       </div>
     </nav>
-    <div class="container">
-     <p class="not-found"></p>
-    </div>
+    <div class="container"></div>
     <script id="movie_container" type="text/x-handlebars-template">
       <div class="movies__container">
         <div class="movies__container-info">
           <div class="movies__container-text">
-          <p class="titolo">
+           <p class="titolo">
             {{titolo}}
-          </p>
-          <p class="titolo_originale">
+           </p>
+           <p class="titolo_originale">
             {{titoloOriginale}}
-          </p>
-          <div class="lang">
+           </p>
+           <div class="lang">
             {{{lang}}}
-          </div>
-          <div class="ratings">
+           </div>
+           <div class="ratings">
             {{{rating}}}
-          </div>
+           </div>
+           <p class="overview-text">{{overview}}</p>
           </div>
           <div class="img-box">
             <img src=" {{poster}}" class="poster" alt="">
-           </div>
+          </div>
         </div>
       </div>
     </script>

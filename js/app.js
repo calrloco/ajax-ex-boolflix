@@ -22,6 +22,7 @@ function cercaFilm(titolo, url) {
   // svuoto ricerce se ce ne sono
   if ($(".movies__container-info").length > 0) {
     $(".container").empty();
+    $(".container").append("<p class=\"not-found\"></p>");
   }
   // api
   $.ajax({
@@ -31,11 +32,12 @@ function cercaFilm(titolo, url) {
       api_key: "911c39a0e26befb8fde97cb0a1c177cd",
       query: titolo,
       language: "it-IT",
-      include_adult: true,
+      include_adult: false,
     },
     success: function (risposta) {
       // se ci sono risposte fa la funzione
       if (risposta.results.length != 0) {
+        $('.not-found').hide();
         compileHandlebar(risposta.results);
       } else {
         $(".not-found").text(
@@ -43,7 +45,7 @@ function cercaFilm(titolo, url) {
             '"' +
             titolo +
             '"' +
-            "prova con parole chiave diverse"
+            "prova con parole chiave diverse."
         );
       }
     },
@@ -56,6 +58,8 @@ function cercaFilm(titolo, url) {
 function compileHandlebar(risp) {
   var titolo;
   var titoloOriginale;
+  var source = $("#movie_container").html();
+  var template = Handlebars.compile(source);
   for (i = 0; i < risp.length; i++) {
     if (risp[i].media_type != "person") {
       if (risp[i].media_type == "tv") {
@@ -65,22 +69,22 @@ function compileHandlebar(risp) {
         titolo = risp[i].title;
         titoloOriginale = risp[i].original_title;
       }
-      var source = $("#movie_container").html();
-      var template = Handlebars.compile(source);
       var rating = risp[i].vote_average;
       var lingua = risp[i].original_language;
-      var posterPrefix = "https://image.tmdb.org/t/p/w342"
+      var posterPrefix = "https://image.tmdb.org/t/p/w342";
       var context = {
         titolo: titolo,
         titoloOriginale: titoloOriginale,
         lang: nationFlag(lingua),
         rating: addStar(rating),
-        poster: posterPrefix+risp[i].poster_path,
+        poster: posterPrefix + risp[i].poster_path,
+        overview: risp[i].overview
       };
       var html = template(context);
       $(".container").append(html);
     }
   }
+  brokenImg();
 }
 // function homepage popular movies
 function trendMoviesHomePage() {
@@ -88,14 +92,19 @@ function trendMoviesHomePage() {
   var titolo = "";
   cercaFilm(titolo, PopularThisWeek);
 }
+// aggiungistella
 function addStar(rat) {
-  var voto = Math.ceil(rat / 2);
+  var voto = rat / 2;
+  var resto = rat % 2;
   var stars = "";
   for (var i = 0; i < 5; i++) {
     if (i <= voto) {
       var star = '<i class="fas fa-star rating yellow"></i>';
+    } else if (resto != 0) {
+      var star = '<i class="fas fa-star-half-alt yellow"></i>';
+      resto = 0;
     } else {
-      var star = '<i class="fas fa-star rating"></i>';
+      var star = '<i class="far fa-star rating yellow"></i>';
     }
     stars += star;
   }
@@ -111,6 +120,12 @@ function nationFlag(lingua) {
       "<img src='https://svgshare.com/i/PGP.svg'' alt=\"IT-flag\" class=\"flags\" title=''/>";
   }
   return lingua;
+}
+/// broken image sostituzione//////////////
+function brokenImg(){
+  $('img.poster').on("error", function () {
+    this.src ="https://i.ibb.co/hKqm2mZ/Untitled-1.png";
+  });
 }
 ////////// animazioni//////////////////////////
 function popSearch() {
@@ -138,3 +153,4 @@ function popSearch() {
     }
   });
 }
+
