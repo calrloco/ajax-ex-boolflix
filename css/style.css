@@ -21,14 +21,14 @@ html{
     --netflix-gray:rgb(86,77,77);
     --netflix-cardinale:#831010;
     --background: #141414;
-    --header-height:6.8rem;
+    --nav-height:6.8rem;
     --margin-film:.5rem;
 }
 /*////////////////////////
         header
  /////////////////////////////////*/
-.header{
-    height: var(--header-height);
+.nav{
+    height: var(--nav-height);
     background-color: var(--black);
     display: flex;
     justify-content: space-between;
@@ -40,15 +40,15 @@ html{
     transition: all .6s;
     z-index: 200;
 }
-.header-darker{
+.nav-darker{
     background-color: var(--dark-black);
 }
-.header__left{
+.nav__left{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.header__searchbar{
+.nav__searchbar{
     display: flex;
     align-items: center;
 }
@@ -59,16 +59,16 @@ html{
     height: 2rem;
     cursor: pointer;
 }
-.header__menu__list{
+.nav__menu__list{
     list-style: none;
     color: var(--white);
     font-size: 1.4rem;
     display: flex;
 }
-.header__menu__list-items{
+.nav__menu__list-items{
     cursor: pointer;
 }
-.header__menu__list-items:not(:last-child){
+.nav__menu__list-items:not(:last-child){
    padding-right:2rem;
 }
 .search_movie{
@@ -132,7 +132,6 @@ html{
     color: var(--white);
     margin-top: 2.3rem;
 }
-
 .movies__container-text{
     z-index: 2;
     padding-left: 2rem;
