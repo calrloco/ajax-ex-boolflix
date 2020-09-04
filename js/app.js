@@ -130,7 +130,6 @@ function brokenImg() {
 /////////// tronca stringa ////////////////////
 function troncaStringa(stringa) {
   var shortText = "";
-  var witheSpace = stringa.indexOf(" ");
   for (var i = 0; i < stringa.length; i++) {
     if (stringa[i] == " " && i < 100) {
         var shortText = $.trim(stringa).substring(0, i) + "...";
