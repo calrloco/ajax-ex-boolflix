@@ -154,12 +154,12 @@ function popSearch() {
       $(this).removeClass("fa-times");
     }
   });
-  //////scroll cabio bg-color header///////////
+  //////scroll cabio bg-color nav///////////
   $(window).bind("mousewheel", function (event) {
     if (event.originalEvent.wheelDelta >= 0) {
-      $(".header").removeClass("header-darker");
+      $(".nav").removeClass("nav-darker");
     } else {
-      $(".header").addClass("header-darker");
+      $(".nav").addClass("nav-darker");
     }
   });
 }
