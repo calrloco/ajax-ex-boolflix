@@ -131,7 +131,7 @@ function brokenImg() {
 function troncaStringa(stringa) {
   var shortText = "";
   for (var i = 0; i < stringa.length; i++) {
-    if (stringa[i] == " " && i < 100) {
+    if (stringa[i] == " " && i < 200) {
         var shortText = $.trim(stringa).substring(0, i) + "...";
     }
   }
