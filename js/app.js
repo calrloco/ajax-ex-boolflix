@@ -5,7 +5,7 @@ $(document).ready(function () {
   popSearch();
   // funzione per cercare in automatico mentre scrivi
   $(".logo__img").click(trendMoviesHomePage);
-  $(".search_movie").keydown(function () {
+  $(".search_movie").keyup(function () {
     var urlSearch = "https://api.themoviedb.org/3/search/multi";
     var titolo = $(".search_movie").val();
     if ($(this).val().length != 0) {
