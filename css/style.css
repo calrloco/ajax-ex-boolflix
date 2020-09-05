@@ -143,13 +143,14 @@ html{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .movies__container-info:hover .movies__container-text{
     opacity: 100%;
 }
-.movies__container-info p{
-    font-size: 2rem;
-}
 .movies__container-info p.titolo{
+    font-size: 1rem;
+}
+p.overview-text, .cast-crew{
     font-size: 1rem;
 }
 .not-found{
@@ -186,9 +187,8 @@ html{
     position: absolute;
     z-index: 1;
 }
-p.overview-text{
-    font-size: 1rem;
-}
+
+
 
 
 

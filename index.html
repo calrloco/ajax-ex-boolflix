@@ -32,7 +32,7 @@
     </nav>
     <div class="container"></div>
     <script id="movie_container" type="text/x-handlebars-template">
-      <div class="movies__container">
+      <div class="movies__container  {{cast}}">
         <div class="movies__container-info">
           <div class="movies__container-text">
            <p class="titolo">
@@ -43,6 +43,9 @@
            </p>
            <div class="lang">
             {{{lang}}}
+           </div>
+           <div class="cast">
+            <p class="cast-crew">Cast:</p>
            </div>
            <div class="ratings">
             {{{rating}}}

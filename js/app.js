@@ -54,13 +54,47 @@ function cercaFilm(titolo, url) {
     },
   });
 }
+function cercaCast(url, id) {
+  // api
+  $.ajax({
+    url: url,
+    method: "GET",
+    data: {
+      api_key: "911c39a0e26befb8fde97cb0a1c177cd",
+    },
+    success: function (risposta) {
+      // se ci sono risposte fa la funzione
+      if (risposta.cast.length != 0) {
+        var cast = "";
+        for (var i = 0; i < 3; i++) {
+          if (i >= 2) {
+            cast += " " + risposta.cast[i].name + " ";
+          } else {
+            cast += " " + risposta.cast[i].name + ",";
+          }
+        }
+        $(".movies__container").each(function () {
+          if ($(this).hasClass(id) == true) {
+            $(this).find(".cast-crew").append(cast);
+          }
+        });
+      }
+    },
+    error: function () {
+      alert("Si e verificato un errore :( riprova piu tardi");
+    },
+  });
+}
 // funzione per compilare template
 function compileHandlebar(risp) {
   var titolo;
   var titoloOriginale;
+
   var source = $("#movie_container").html();
   var template = Handlebars.compile(source);
   for (i = 0; i < risp.length; i++) {
+    var filmId = risp[i].id;
+    var urlCast = "https://api.themoviedb.org/3/movie/" + filmId + "/credits";
     if (risp[i].media_type != "person") {
       if (risp[i].media_type == "tv") {
         titolo = risp[i].name;
@@ -79,7 +113,9 @@ function compileHandlebar(risp) {
         rating: addStar(rating),
         poster: posterPrefix + risp[i].poster_path,
         overview: troncaStringa(risp[i].overview),
+        cast: filmId,
       };
+      cercaCast(urlCast, filmId);
       var html = template(context);
       $(".container").append(html);
     }
