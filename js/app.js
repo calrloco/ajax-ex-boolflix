@@ -54,6 +54,7 @@ function cercaFilm(titolo, url) {
     },
   });
 }
+/// funxione per inserie gli attori nella card
 function cercaCast(url, id) {
   // api
   $.ajax({
