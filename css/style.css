@@ -67,19 +67,67 @@ html{
 }
 .nav__menu__list-items{
     cursor: pointer;
+    transition: all .2s;
 }
 .nav__menu__list-items:not(:last-child){
    padding-right:2rem;
 }
 .nav__menu__list-items.genre{
     position: relative;
-    background-color: turquoise;
 }
 .genre__select{
-    width: 20rem;
-    height: 10vh;
-    background-color: rebeccapurple;
+    background-color:var(--background);
     position: absolute;
+    height: auto;
+    display: none;
+    padding: 1.5rem;
+    top: 160%;
+}
+.genre__select::before{
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: inherit;
+    position: absolute;
+    top: -1%;
+    left: 5%;
+    -moz-transform: rotate(45deg);
+   -webkit-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.genre__select-active{
+    display: block;
+}
+.genre__select-items{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.genre__item{
+    flex: 1 1 100%;
+    position: relative;
+    z-index: 100;
+    margin-bottom: 1rem;
+    color: #b4b4b4;
+}
+.genre__item::before{
+    content: "";
+    width: 3px;
+    height: 100%;
+    background-color: var(--netflix-logo-red);
+    position: absolute;
+    left: -7%;
+    transition: all .2s;
+}
+.genre__item:hover::before{
+   width: 110%;
+   height: 100%;
+   z-index: -1;
+}
+.genre__item:hover{
+    color: #fff;
 }
 .search_movie{
     height: 3rem;

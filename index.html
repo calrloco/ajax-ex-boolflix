@@ -38,7 +38,7 @@
     </nav>
     <div class="container"></div>
     <script id="movie_container" type="text/x-handlebars-template">
-      <div class="movies__container"data-media="{{media}}">
+      <div class="movies__container"data-media="{{media}}" data-genre="{{genreIds}}">
         <div class="movies__container-info">
           <div class="movies__container-text">
            <p class="titolo">
@@ -65,7 +65,7 @@
       </div>
     </script>
     <script id="genre__container" type="text/x-handlebars-template">
-      <li class="genre__item"data-genre="{{genreCode}}">
+      <li class="genre__item"data-genre="{{genreId}}">
        {{genre}} 
       <li>
       </script>

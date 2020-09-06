@@ -3,6 +3,7 @@ $(document).ready(function () {
   trendMoviesHomePage();
   // animazione poput e chiusura input al click della lente
   popSearch();
+  Creageneri();
   // funzione per cercare in automatico mentre scrivi
   $(".logo__img").click(trendMoviesHomePage);
   $(".search_movie").keyup(function () {
@@ -14,8 +15,24 @@ $(document).ready(function () {
       trendMoviesHomePage();
     }
   });
-  /// film popolari al click del tasto trend mocies sulla nav;
   $(".trending").click(trendMoviesHomePage);
+  ///filtra per genere/////////
+  $(document).on("click", "li.genre__item", function () {
+    var selectedGenre = $(this).data("genre").toString();
+    console.log(selectedGenre);
+    $(".movies__container").each(function () {
+      cardGenre = $(this).data("genre").toString();
+      if (cardGenre.includes(selectedGenre)) {
+        $(this).show();
+        console.log(cardGenre);
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+  $('.nav__menu__list-items.genre').click(function(){
+    $('.genre__select').toggleClass('genre__select-active');
+  })
 });
 // funzione ricerca Api che richiama la funzione che compila il template
 function cercaFilm(titolo, url) {
@@ -24,7 +41,7 @@ function cercaFilm(titolo, url) {
     $(".container").empty();
     $(".container").append('<p class="not-found"></p>');
   }
-  // api
+  // api ricerca multipla 
   $.ajax({
     url: url,
     method: "GET",
@@ -54,7 +71,7 @@ function cercaFilm(titolo, url) {
     },
   });
 }
-/// funxione per inserie gli attori nella card
+/// Api  per inserie gli attori nella card
 function cercaCast(url, id) {
   // api
   $.ajax({
@@ -86,7 +103,25 @@ function cercaCast(url, id) {
     },
   });
 }
-// funzione per compilare template
+// api per i genri 
+function Creageneri() {
+  // api
+  $.ajax({
+    url: "https://api.themoviedb.org/3/genre/movie/list",
+    method: "GET",
+    data: {
+      api_key: "911c39a0e26befb8fde97cb0a1c177cd",
+    },
+    success: function (risposta) {
+      // se ci sono risposte fa la funzione
+      compileGenre(risposta.genres);
+    },
+    error: function () {
+      console.log(arguments);
+    },
+  });
+}
+// funzione habdlebar per compilare template
 function compileHandlebar(risp) {
   var titolo;
   var titoloOriginale;
@@ -115,6 +150,7 @@ function compileHandlebar(risp) {
         overview: troncaStringa(risp[i].overview),
         cast: filmId,
         media: risp[i].media_type,
+        genreIds: risp[i].genre_ids,
       };
       var html = template(context);
       $(".container").append(html);
@@ -122,12 +158,25 @@ function compileHandlebar(risp) {
       cercaCast(urlCast, filmId);
     }
   }
-  function compileGenre(){
-
-  }
   brokenImg();
-  // alla fine del ciclo con la prima chiamta ajax cerca il cast con la seconda chiamata per il cast
 }
+// funzione handlebar per compilare il dropdown dei genri////
+function compileGenre(risposta) {
+  var source = $("#genre__container").html();
+  var templateGenri = Handlebars.compile(source);
+  for (var i = 0; i < risposta.length; i++) {
+    var genre = risposta[i].name;
+    var genreId = risposta[i].id;
+    var context = {
+      genre: genre,
+      genreId: genreId,
+    };
+    var htmlcontext = templateGenri(context);
+    $(".genre__select-items").append(htmlcontext);
+  }
+}
+
+// alla fine del ciclo con la prima chiamta ajax cerca il cast con la seconda chiamata per il cast
 //// funzioni per filtrare la ricerca fatta tra film e serie tv
 $(".nav__menu__list-items.film").click(function () {
   $("[data-media='" + "tv" + "']").hide();
