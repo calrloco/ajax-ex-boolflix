@@ -65,24 +65,24 @@ function cercaCast(url, id) {
     },
     success: function (risposta) {
       // se ci sono risposte fa la funzione
+      var cast = [];
       if (risposta.cast.length != 0) {
-        var cast = "";
         for (var i = 0; i < 3; i++) {
-          if (i >= 2) {
-            cast += " " + risposta.cast[i].name + " ";
+          if (i <= 1) {
+            cast += " " + risposta.cast[i].name + ", ";
           } else {
-            cast += " " + risposta.cast[i].name + ",";
+            cast += " "+ risposta.cast[i].name + ".";
           }
         }
-        $(".movies__container").each(function () {
-          if ($(this).hasClass(id) == true) {
-            $(this).find(".cast-crew").append(cast);
-          }
-        });
+        $(".cast")
+          .find("[data-cast='" + id + "']")
+          .append(cast);
+      } else {
+        cast = "Non ci sono informazioni";
       }
     },
     error: function () {
-      alert("Si e verificato un errore :( riprova piu tardi");
+      console.log(arguments);
     },
   });
 }
@@ -90,7 +90,6 @@ function cercaCast(url, id) {
 function compileHandlebar(risp) {
   var titolo;
   var titoloOriginale;
-
   var source = $("#movie_container").html();
   var template = Handlebars.compile(source);
   for (i = 0; i < risp.length; i++) {
@@ -115,14 +114,24 @@ function compileHandlebar(risp) {
         poster: posterPrefix + risp[i].poster_path,
         overview: troncaStringa(risp[i].overview),
         cast: filmId,
+        media:risp[i].media_type
       };
-      cercaCast(urlCast, filmId);
       var html = template(context);
       $(".container").append(html);
+      //cercacast
+      cercaCast(urlCast, filmId);
     }
   }
   brokenImg();
+  // alla fine del ciclo con la prima chiamta ajax cerca il cast con la seconda chiamata per il cast
 }
+//// funzioni per filtrare la ricerca fatta tra film e serie tv
+$('.nav__menu__list-items.film').click(function(){
+       $("[data-media='" + "tv" + "']").hide();
+});
+$('.nav__menu__list-items.serie').click(function(){
+  $("[data-media='" + "movie" + "']").hide();
+});
 // function homepage popular movies
 function trendMoviesHomePage() {
   PopularThisWeek = "https://api.themoviedb.org/3/trending/movie/week";

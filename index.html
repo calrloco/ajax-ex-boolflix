@@ -32,7 +32,7 @@
     </nav>
     <div class="container"></div>
     <script id="movie_container" type="text/x-handlebars-template">
-      <div class="movies__container  {{cast}}">
+      <div class="movies__container"data-media="{{media}}">
         <div class="movies__container-info">
           <div class="movies__container-text">
            <p class="titolo">
@@ -45,7 +45,7 @@
             {{{lang}}}
            </div>
            <div class="cast">
-            <p class="cast-crew">Cast:</p>
+             <p class="cast-crew" data-cast="{{cast}}"></p>
            </div>
            <div class="ratings">
             {{{rating}}}
