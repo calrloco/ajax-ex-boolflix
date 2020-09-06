@@ -30,9 +30,9 @@ $(document).ready(function () {
       }
     });
   });
-  $('.nav__menu__list-items.genre').click(function(){
-    $('.genre__select').toggleClass('genre__select-active');
-  })
+  $(".nav__menu__list-items.genre").click(function () {
+    $(".genre__select").toggleClass("genre__select-active");
+  });
 });
 // funzione ricerca Api che richiama la funzione che compila il template
 function cercaFilm(titolo, url) {
@@ -41,7 +41,7 @@ function cercaFilm(titolo, url) {
     $(".container").empty();
     $(".container").append('<p class="not-found"></p>');
   }
-  // api ricerca multipla 
+  // api ricerca multipla
   $.ajax({
     url: url,
     method: "GET",
@@ -103,7 +103,7 @@ function cercaCast(url, id) {
     },
   });
 }
-// api per i genri 
+// api per i genri
 function Creageneri() {
   // api
   $.ajax({
@@ -175,8 +175,6 @@ function compileGenre(risposta) {
     $(".genre__select-items").append(htmlcontext);
   }
 }
-
-// alla fine del ciclo con la prima chiamta ajax cerca il cast con la seconda chiamata per il cast
 //// funzioni per filtrare la ricerca fatta tra film e serie tv
 $(".nav__menu__list-items.film").click(function () {
   $("[data-media='" + "tv" + "']").hide();

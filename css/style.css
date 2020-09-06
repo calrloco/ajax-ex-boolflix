@@ -104,9 +104,10 @@ html{
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    width: 15vw;
 }
 .genre__item{
-    flex: 1 1 100%;
+    flex: 0 1 50%;
     position: relative;
     z-index: 100;
     margin-bottom: 1rem;
@@ -122,7 +123,7 @@ html{
     transition: all .2s;
 }
 .genre__item:hover::before{
-   width: 110%;
+   width: 99%;
    height: 100%;
    z-index: -1;
 }
@@ -165,7 +166,6 @@ html{
     justify-content: flex-start;
     align-items: flex-start;
     padding:5.7rem;
-    overflow: hidden;
 }
 .movies__container{
     height: calc(100vh / 2);
