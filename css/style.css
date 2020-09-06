@@ -71,6 +71,16 @@ html{
 .nav__menu__list-items:not(:last-child){
    padding-right:2rem;
 }
+.nav__menu__list-items.genre{
+    position: relative;
+    background-color: turquoise;
+}
+.genre__select{
+    width: 20rem;
+    height: 10vh;
+    background-color: rebeccapurple;
+    position: absolute;
+}
 .search_movie{
     height: 3rem;
     width: 0;

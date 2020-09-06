@@ -21,6 +21,12 @@
             <li class="nav__menu__list-items film">Film</li>
             <li class="nav__menu__list-items serie">Serie tv</li>
             <li class="nav__menu__list-items trending">Tendenze</li>
+            <li class="nav__menu__list-items genre">
+              Filtra Per Genere
+              <div class="genre__select">
+                <ul class="genre__select-items"></ul>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -58,6 +64,11 @@
         </div>
       </div>
     </script>
+    <script id="genre__container" type="text/x-handlebars-template">
+      <li class="genre__item"data-genre="{{genreCode}}">
+       {{genre}} 
+      <li>
+      </script>
     <script src="js/app.js"></script>
   </body>
 </html>

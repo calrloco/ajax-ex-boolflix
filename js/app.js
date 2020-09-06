@@ -65,13 +65,13 @@ function cercaCast(url, id) {
     },
     success: function (risposta) {
       // se ci sono risposte fa la funzione
-      var cast = [];
+      var cast = "";
       if (risposta.cast.length != 0) {
         for (var i = 0; i < 3; i++) {
           if (i <= 1) {
             cast += " " + risposta.cast[i].name + ", ";
           } else {
-            cast += " "+ risposta.cast[i].name + ".";
+            cast += " " + risposta.cast[i].name + ".";
           }
         }
         $(".cast")
@@ -114,7 +114,7 @@ function compileHandlebar(risp) {
         poster: posterPrefix + risp[i].poster_path,
         overview: troncaStringa(risp[i].overview),
         cast: filmId,
-        media:risp[i].media_type
+        media: risp[i].media_type,
       };
       var html = template(context);
       $(".container").append(html);
@@ -122,14 +122,17 @@ function compileHandlebar(risp) {
       cercaCast(urlCast, filmId);
     }
   }
+  function compileGenre(){
+
+  }
   brokenImg();
   // alla fine del ciclo con la prima chiamta ajax cerca il cast con la seconda chiamata per il cast
 }
 //// funzioni per filtrare la ricerca fatta tra film e serie tv
-$('.nav__menu__list-items.film').click(function(){
-       $("[data-media='" + "tv" + "']").hide();
+$(".nav__menu__list-items.film").click(function () {
+  $("[data-media='" + "tv" + "']").hide();
 });
-$('.nav__menu__list-items.serie').click(function(){
+$(".nav__menu__list-items.serie").click(function () {
   $("[data-media='" + "movie" + "']").hide();
 });
 // function homepage popular movies
