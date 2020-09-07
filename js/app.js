@@ -85,16 +85,19 @@ function cercaCast(url, id) {
       var len = restituisciLunghezza(risposta.cast.length);
       if (risposta.cast.length != 0) {
         for (var i = 0; i < len; i++) {
-          if (i <= len - 2) {
+          if (i < len - 1) {
             cast += " " + risposta.cast[i].name + ", ";
           } else {
             cast += " " + risposta.cast[i].name + ".";
           }
         }
-        $(".cast")
-          .find("[data-cast='" + id + "']")
-          .append(cast);
-      }
+       
+      }else{
+        cast = 'cast non disponibile'
+      } 
+      $(".cast")
+      .find("[data-cast='" + id + "']")
+      .append(cast);
     },
     error: function () {
       cast = "Informazioni Non Trovate";
