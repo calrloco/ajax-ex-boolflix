@@ -205,7 +205,7 @@ html{
 .movies__container-info:hover .movies__container-text{
     opacity: 100%;
 }
-.movies__container-info p.titolo{
+.movies__container-info p.titolo_originale{
     font-size: 1rem;
 }
 p.overview-text, .cast-crew{

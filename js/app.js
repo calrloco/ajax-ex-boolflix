@@ -23,7 +23,6 @@ $(document).ready(function () {
       cardGenre = $(this).data("genre").toString();
       if (cardGenre.includes(selectedGenre)) {
         $(this).show();
-        console.log(cardGenre);
       } else {
         $(this).hide();
       }
@@ -91,13 +90,12 @@ function cercaCast(url, id) {
             cast += " " + risposta.cast[i].name + ".";
           }
         }
-       
-      }else{
-        cast = 'cast non disponibile'
-      } 
+      } else {
+        cast = "cast non disponibile";
+      }
       $(".cast")
-      .find("[data-cast='" + id + "']")
-      .append(cast);
+        .find("[data-cast='" + id + "']")
+        .append(cast);
     },
     error: function () {
       cast = "Informazioni Non Trovate";
@@ -150,14 +148,14 @@ function compileHandlebar(risp) {
       }
       var context = {
         titolo: titolo,
-        titoloOriginale: titoloOriginale,
+        titoloOriginale: restituisciTitoli(titolo,titoloOriginale),
         lang: nationFlag(lingua),
         rating: addStar(rating),
         poster: defaultImg(posterPath, posterPrefix),
         overview: troncaStringa(risp[i].overview),
         cast: mediaId,
         media: risp[i].media_type,
-        genreIds: risp[i].genre_ids,
+        genreIds: risp[i].genre_ids
       };
       var html = template(context);
       $(".container").append(html);
@@ -258,6 +256,13 @@ function restituisciLunghezza(lenght) {
     lenght = 5;
   }
   return lenght;
+}
+////////// cerca duplicato fra titolo e titolo originale///////////////
+function restituisciTitoli(titolo,titoloOriginale){
+  if(titolo == titoloOriginale){
+     titoloOriginale = "";
+  }
+  return titoloOriginale;
 }
 ////////// animazioni//////////////////////////
 function popSearch() {
