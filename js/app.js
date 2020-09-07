@@ -82,9 +82,10 @@ function cercaCast(url, id) {
     success: function (risposta) {
       // se ci sono risposte fa la funzione
       var cast = "";
+      var len = restituisciLunghezza(risposta.cast.length);
       if (risposta.cast.length != 0) {
-        for (var i = 0; i < 3; i++) {
-          if (i <= 1) {
+        for (var i = 0; i < len; i++) {
+          if (i <= len - 2) {
             cast += " " + risposta.cast[i].name + ", ";
           } else {
             cast += " " + risposta.cast[i].name + ".";
@@ -96,7 +97,7 @@ function cercaCast(url, id) {
       }
     },
     error: function () {
-      cast = "Non ci sono informazioni sul cast";
+      cast = "Informazioni Non Trovate";
       $(".cast")
         .find("[data-cast='" + id + "']")
         .append(cast);
@@ -128,37 +129,39 @@ function compileHandlebar(risp) {
   var source = $("#movie_container").html();
   var template = Handlebars.compile(source);
   for (i = 0; i < risp.length; i++) {
-    var filmId = risp[i].id;
-    var urlCast = "https://api.themoviedb.org/3/movie/" + filmId + "/credits";
+    var mediaId = risp[i].id;
+    var urlCast = "https://api.themoviedb.org/3/movie/" + mediaId + "/credits";
+    var rating = risp[i].vote_average;
+    var lingua = risp[i].original_language;
+    var posterPrefix = "https://image.tmdb.org/t/p/w342";
+    var posterPath = risp[i].poster_path;
+    var imgPath = posterPrefix + posterPath;
     if (risp[i].media_type != "person") {
       if (risp[i].media_type == "tv") {
         titolo = risp[i].name;
         titoloOriginale = risp[i].original_name;
+        var urlCast = "https://api.themoviedb.org/3/tv/" + mediaId + "/credits";
       } else if (risp[i].media_type == "movie") {
         titolo = risp[i].title;
         titoloOriginale = risp[i].original_title;
       }
-      var rating = risp[i].vote_average;
-      var lingua = risp[i].original_language;
-      var posterPrefix = "https://image.tmdb.org/t/p/w342";
       var context = {
         titolo: titolo,
         titoloOriginale: titoloOriginale,
         lang: nationFlag(lingua),
         rating: addStar(rating),
-        poster: posterPrefix + risp[i].poster_path,
+        poster: defaultImg(posterPath, posterPrefix),
         overview: troncaStringa(risp[i].overview),
-        cast: filmId,
+        cast: mediaId,
         media: risp[i].media_type,
         genreIds: risp[i].genre_ids,
       };
       var html = template(context);
       $(".container").append(html);
       //cercacast
-      cercaCast(urlCast, filmId);
+      cercaCast(urlCast, mediaId);
     }
   }
-  brokenImg();
 }
 // funzione handlebar per compilare il dropdown dei genri////
 function compileGenre(risposta) {
@@ -224,20 +227,34 @@ function nationFlag(lingua) {
   return lingua;
 }
 /// broken image sostituzione//////////////
-function brokenImg() {
-  $("img.poster").on("error", function () {
-    this.src = "https://i.ibb.co/hKqm2mZ/Untitled-1.png";
-  });
+function defaultImg(path, prefix) {
+  if (path == null) {
+    img = "https://i.ibb.co/hKqm2mZ/Untitled-1.png";
+  } else {
+    img = prefix + path;
+  }
+  return img;
 }
 /////////// tronca stringa ////////////////////
 function troncaStringa(stringa) {
   var shortText = "";
-  for (var i = 0; i < stringa.length; i++) {
-    if (stringa[i] == " " && i < 200) {
-      var shortText = $.trim(stringa).substring(0, i) + "...";
+  if (stringa.length != 0) {
+    for (var i = 0; i < stringa.length; i++) {
+      if (stringa[i] == " " && i < 250) {
+        var shortText = $.trim(stringa).substring(0, i) + "...";
+      }
     }
+  } else {
+    shortText = "Trama Non Disponibile";
   }
   return shortText;
+}
+////////// restituzione lughezza cat massimo 5////
+function restituisciLunghezza(lenght) {
+  if (lenght > 5) {
+    lenght = 5;
+  }
+  return lenght;
 }
 ////////// animazioni//////////////////////////
 function popSearch() {
