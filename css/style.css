@@ -203,7 +203,7 @@ html {
   text-overflow: ellipsis;
 }
 .movies__container-info:hover .movies__container-text {
-  opacity: 100%;
+  opacity: 100;
 }
 .movies__container-info:hover .poster {
   filter: brightness(57%);
