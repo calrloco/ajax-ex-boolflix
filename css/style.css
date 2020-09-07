@@ -202,7 +202,6 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .movies__container-info:hover .movies__container-text {
   opacity: 100%;
 }
@@ -250,4 +249,28 @@ p.overview-text,
   height: 100%;
   position: absolute;
   z-index: 1;
+}
+/*small desktop*/
+@media screen and (max-width: 1700px){
+    .movies__container {
+        flex: 0 0 calc((100% / 4) - 0.8rem);
+    }
+}
+@media screen and (max-width: 1200px){
+    .movies__container {
+        flex: 0 0 calc((100% / 3) - 0.8rem);
+    }
+}
+/*from 900 to tablet*/
+@media screen and (max-width: 900px){
+    .movies__container {
+        flex: 0 0 calc((100% / 2) - 0.8rem);
+    }
+}
+/*mobile*/
+@media screen and (max-width: 375px){
+    .movies__container {
+        flex: 0 0 100%;
+    }
+    
 }

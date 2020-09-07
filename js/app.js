@@ -150,7 +150,6 @@ function compileHandlebar(risp) {
     var lingua = risp[i].original_language;
     var posterPrefix = "https://image.tmdb.org/t/p/w342";
     var posterPath = risp[i].poster_path;
-    var imgPath = posterPrefix + posterPath;
     if (risp[i].media_type != "person") {
       if (risp[i].media_type == "tv") {
         titolo = risp[i].name;
