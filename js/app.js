@@ -230,6 +230,7 @@ function nationFlag(lingua) {
 }
 /// broken image sostituzione//////////////
 function defaultImg(path, prefix) {
+  var img;
   if (path == null) {
     img = "https://i.ibb.co/hKqm2mZ/Untitled-1.png";
   } else {
