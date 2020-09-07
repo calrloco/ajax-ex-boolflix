@@ -205,6 +205,10 @@ html{
 .movies__container-info:hover .movies__container-text{
     opacity: 100%;
 }
+.movies__container-info:hover  .poster{
+    filter:  brightness(57%);
+    -webkit-filter:brightness(47%);
+}
 .movies__container-info p.titolo_originale{
     font-size: 1rem;
 }
@@ -234,10 +238,6 @@ p.overview-text, .cast-crew{
     z-index: 1;
     object-fit:cover;
     transition: all .4s;
-}
-.poster:hover{
-    filter:  brightness(57%);
-    -webkit-filter:brightness(47%);
 }
 .img-box{
     width: 100%;

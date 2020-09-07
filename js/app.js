@@ -31,6 +31,20 @@ $(document).ready(function () {
   $(".nav__menu__list-items.genre").click(function () {
     $(".genre__select").toggleClass("genre__select-active");
   });
+
+  //// funzioni per filtrare la ricerca fatta tra film e serie tv
+  $(".nav__menu__list-items.film").click(function () {
+    var film = $("[data-media='" + "movie" + "']");
+    var tv = $("[data-media='" + "tv" + "']");
+    film.show();
+    tv.hide();
+  });
+  $(".nav__menu__list-items.serie").click(function () {
+    var film = $("[data-media='" + "movie" + "']");
+    var tv = $("[data-media='" + "tv" + "']");
+    tv.show();
+    film.hide();
+  });
 });
 // funzione ricerca Api che richiama la funzione che compila il template
 function cercaFilm(titolo, url) {
@@ -148,14 +162,14 @@ function compileHandlebar(risp) {
       }
       var context = {
         titolo: titolo,
-        titoloOriginale: restituisciTitoli(titolo,titoloOriginale),
+        titoloOriginale: restituisciTitoli(titolo, titoloOriginale),
         lang: nationFlag(lingua),
         rating: addStar(rating),
         poster: defaultImg(posterPath, posterPrefix),
         overview: troncaStringa(risp[i].overview),
         cast: mediaId,
         media: risp[i].media_type,
-        genreIds: risp[i].genre_ids
+        genreIds: risp[i].genre_ids,
       };
       var html = template(context);
       $(".container").append(html);
@@ -179,19 +193,6 @@ function compileGenre(risposta) {
     $(".genre__select-items").append(htmlcontext);
   }
 }
-//// funzioni per filtrare la ricerca fatta tra film e serie tv
-$(".nav__menu__list-items.film").click(function () {
-  var film = $("[data-media='" + "movie" + "']");
-  var tv = $("[data-media='" + "tv" + "']");
-  film.show();
-  tv.hide();
-});
-$(".nav__menu__list-items.serie").click(function () {
-  var film = $("[data-media='" + "movie" + "']");
-  var tv = $("[data-media='" + "tv" + "']");
-  tv.show();
-  film.hide();
-});
 // function homepage popular movies
 function trendMoviesHomePage() {
   PopularThisWeek = "https://api.themoviedb.org/3/trending/movie/week";
@@ -258,9 +259,9 @@ function restituisciLunghezza(lenght) {
   return lenght;
 }
 ////////// cerca duplicato fra titolo e titolo originale///////////////
-function restituisciTitoli(titolo,titoloOriginale){
-  if(titolo == titoloOriginale){
-     titoloOriginale = "";
+function restituisciTitoli(titolo, titoloOriginale) {
+  if (titolo == titoloOriginale) {
+    titoloOriginale = "";
   }
   return titoloOriginale;
 }
