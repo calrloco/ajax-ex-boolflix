@@ -197,7 +197,7 @@ html {
   background-color: var(--black-overlay);
   opacity: 0;
   max-height: 100%;
-  transition: opacity 0.4s;
+  transition: opacity .4s;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -238,7 +238,7 @@ p.overview-text,
   height: 100%;
   z-index: 1;
   object-fit: cover;
-  transition: all 0.4s;
+  transition: all .4s;
 }
 .lang {
   font-size: 1rem;
@@ -272,5 +272,4 @@ p.overview-text,
     .movies__container {
         flex: 0 0 100%;
     }
-    
 }
