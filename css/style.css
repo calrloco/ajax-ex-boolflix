@@ -207,7 +207,7 @@ html {
 }
 .movies__container-info:hover .poster {
   filter: brightness(57%);
-  -webkit-filter: brightness(47%);
+  -webkit-filter: brightness(57%);
 }
 .movies__container-info p.titolo_originale {
   font-size: 1rem;
