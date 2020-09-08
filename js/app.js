@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // all'ingresso del sito viene fornita una lista di film popolari questa settimana
+  // all'ingresso del sito viene fornita una lista di film e serie popolari questa settimana
   trendMoviesHomePage();
   // animazione poput e chiusura input al click della lente
   popSearch();
@@ -192,9 +192,9 @@ function compileGenre(risposta) {
     $(".genre__select-items").append(htmlcontext);
   }
 }
-// function homepage popular movies
+// function homepage contenuti piu popolari della settimana
 function trendMoviesHomePage() {
-  PopularThisWeek = "https://api.themoviedb.org/3/trending/movie/week";
+  PopularThisWeek = "https://api.themoviedb.org/3/trending/all/week";
   var titolo = "";
   cercaFilm(titolo, PopularThisWeek);
 }

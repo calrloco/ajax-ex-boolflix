@@ -254,26 +254,15 @@ p.overview-text,
 Media query
 //////////////////////*/
 /*small desktop*/
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1280px) {
   .movies__container {
     flex: 0 0 calc((100% / 4) - 0.8rem);
   }
 }
-@media screen and (max-width: 1200px) {
+/*from 900 to tablet*/
+@media screen and (max-width: 896px) {
   .movies__container {
     flex: 0 0 calc((100% / 3) - 0.8rem);
-  }
-}
-/*from 900 to tablet*/
-@media screen and (max-width: 900px) {
-  .movies__container {
-    flex: 0 0 calc((100% / 2) - 0.8rem);
-  }
-}
-/*mobile*/
-@media screen and (max-width: 375px) {
-  .movies__container {
-    flex: 0 0 100%;
   }
   .nav {
     height: 14.2rem;
@@ -294,6 +283,27 @@ Media query
     padding: 0;
   }
   .movies__container {
+    margin-top: 8.3rem;
+  }
+  .nav__menu__list-items.genre{
+    display: none;
+  }
+  li.nav__menu__list-items.trending{
+    padding-right: 0px;
+  }
+}
+@media screen and (max-width: 863px){
+  .movies__container {
+    flex: 0 0 calc((100% / 2) - 0.8rem);
+  }
+}
+/*mobile*/
+@media screen and (max-width: 375px) {
+  .movies__container {
+    flex: 0 0 100%;
+  }
+  .movies__container {
     margin: 8.3rem 0 0 0;
   }
+ 
 }
