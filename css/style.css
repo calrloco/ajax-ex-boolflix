@@ -285,14 +285,14 @@ Media query
   .movies__container {
     margin-top: 8.3rem;
   }
-  .nav__menu__list-items.genre{
+  .nav__menu__list-items.genre {
     display: none;
   }
-  li.nav__menu__list-items.trending{
+  li.nav__menu__list-items.trending {
     padding-right: 0px;
   }
 }
-@media screen and (max-width: 863px){
+@media screen and (max-width: 863px) {
   .movies__container {
     flex: 0 0 calc((100% / 2) - 0.8rem);
   }
@@ -305,5 +305,4 @@ Media query
   .movies__container {
     margin: 8.3rem 0 0 0;
   }
- 
 }
