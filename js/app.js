@@ -28,6 +28,7 @@ $(document).ready(function () {
       }
     });
   });
+  ////pop  menu genere
   $(".nav__menu__list-items.genre").click(function () {
     $(".genre__select").toggleClass("genre__select-active");
   });
@@ -265,7 +266,7 @@ function restituisciTitoli(titolo, titoloOriginale) {
   }
   return titoloOriginale;
 }
-////////// animazioni//////////////////////////
+////////// animazioni searchbar e Navbar//////////////////////////
 function popSearch() {
   $(".search_movie__btn").click(function () {
     $(".search_movie").toggleClass("search-full");
